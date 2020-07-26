@@ -1,7 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
-import { Heading, InputBox, Button, AppHeader, InputText, Footer, PageContainer, Error } from './styles';
+import { TabContent, TabPane, Nav, NavItem, NavLink, Row, Col } from 'reactstrap';
+import classnames from 'classnames';
+import { Heading, InputBox, Button, AppHeader, InputText, Footer, PageContainer, Error, Tag } from './styles';
 import { initiateSearchRequest, addMovieToWatchList, removeMoviesFromWatchList } from './movies.actions';
 import MovieTile from 'Components/movieTile';
 import WatchList from 'Components/watchList';
@@ -25,6 +27,7 @@ interface IProps {
 
 interface IState {
   searchText: string;
+  activeTab: string;
   watchList: IMovie[];
 }
 
@@ -35,6 +38,7 @@ class SearchPage extends React.Component<ISearchMoviesProps, IState> {
     super(props);
     this.state = {
       searchText: '',
+      activeTab: '1',
       watchList: this.props.moviesWatchList || [],
     };
   }
@@ -74,8 +78,13 @@ class SearchPage extends React.Component<ISearchMoviesProps, IState> {
     });
   };
 
+  toggle = (tab: string) => {
+    const { activeTab } = this.state;
+    if (activeTab !== tab) this.setState({ activeTab: tab });
+  };
+
   render() {
-    console.log('this.props.moviesWatchList    ', this.props.moviesWatchList);
+    const { activeTab } = this.state;
     return (
       <>
         <AppHeader>
@@ -100,15 +109,53 @@ class SearchPage extends React.Component<ISearchMoviesProps, IState> {
           </InputBox>
         </AppHeader>
         <PageContainer className="container">
-          {this.props.moviesList.Search && (
-            <MovieTile movies={this.props.moviesList.Search} addToWatchList={this.addToWatchList} />
-          )}
-          {this.props.moviesList.Response && this.props.moviesList.Response === 'False' && (
-            <Error>{this.props.moviesList.Error}</Error>
-          )}
-          {this.props.moviesWatchList && this.props.moviesWatchList.length > 0 && (
-            <WatchList favList={this.state.watchList} removeFromWatchList={this.removeFromWatchList} />
-          )}
+          <Nav tabs={true}>
+            <NavItem>
+              <NavLink
+                className={classnames({ active: activeTab === '1' })}
+                // tslint:disable-next-line: jsx-no-lambda
+                onClick={() => {
+                  this.toggle('1');
+                }}
+              >
+                Search results
+              </NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink
+                className={classnames({ active: activeTab === '2' })}
+                // tslint:disable-next-line: jsx-no-lambda
+                onClick={() => {
+                  this.toggle('2');
+                }}
+              >
+                Watchlist <Tag>{this.props.moviesWatchList.length}</Tag>
+              </NavLink>
+            </NavItem>
+          </Nav>
+          <TabContent activeTab={activeTab} style={{ height: 'calc(100% -  50px)', overflowY: 'auto' }}>
+            <TabPane tabId="1">
+              <Row>
+                <Col sm="12">
+                  {this.props.moviesList.Search && (
+                    <MovieTile movies={this.props.moviesList.Search} addToWatchList={this.addToWatchList} />
+                  )}
+                  {this.props.moviesList.Response && this.props.moviesList.Response === 'False' && (
+                    <Error>{this.props.moviesList.Error}</Error>
+                  )}
+                </Col>
+              </Row>
+            </TabPane>
+            <TabPane tabId="2">
+              <Row>
+                <Col sm="12">
+                  {this.props.moviesWatchList && this.props.moviesWatchList.length > 0 && (
+                    <WatchList favList={this.state.watchList} removeFromWatchList={this.removeFromWatchList} />
+                  )}
+                </Col>
+              </Row>
+            </TabPane>
+          </TabContent>
         </PageContainer>
         <Footer>
           <p>Footer</p>

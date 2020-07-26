@@ -6,7 +6,7 @@ export const AppHeader = styled.div`
   padding: 20px;
   text-align: center;
   color: white;
-  height: 120px;
+  height: 140px;
 `;
 
 export const Heading = styled.h1`
@@ -27,6 +27,11 @@ export const InputText = styled.input`
   padding: 6px;
   display: inline-block;
   width: 20%;
+
+  @media (max-width: ${PageBodyBreakPoint.mdMobileMax}) {
+    width: 50%;
+    margin: 0 10px;
+  }
 `;
 
 export const ThumbnailGallery = styled.div`
@@ -44,7 +49,6 @@ export const Button = styled.button`
   padding: 0 30px;
   height: 40px;
   color: #2e2c2b;
-  text-transform: uppercase;
   border: 1px solid #e7c748;
   cursor: pointer;
   display: inline-block;
@@ -77,4 +81,17 @@ export const Error = styled.div`
   padding: 10%;
   color: red;
   font-size: 20px;
+`;
+
+export const Tag = styled.span`
+  background-color: #e7c748;
+  height: 30px;
+  width: 30px;
+  color: #2e2c2b;
+  display: inline-block;
+  border-radius: 15px;
+  vertical-align: middle;
+  box-sizing: border-box;
+  padding: 4px 11px;
+  font-size: 14px;
 `;

@@ -1,5 +1,5 @@
 import React from 'react';
-import { ListContainer, List, Poster, Details, Button, MoviesListDiv, ModalTitle } from './styles';
+import { ListContainer, List, Poster, Details, Button, MoviesListDiv } from './styles';
 import { IMovie } from 'Interface/common.interface';
 
 interface IProps {
@@ -35,7 +35,6 @@ class MovieTile extends React.Component<IProps, {}> {
     return (
       <React.Fragment>
         <MoviesListDiv>
-          <ModalTitle>Search results</ModalTitle>
           <ListContainer>
             {this.props.movies.map((movie: IMovie, idx: number) => this.renderTile(movie, idx))}
           </ListContainer>

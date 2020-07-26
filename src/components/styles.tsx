@@ -19,14 +19,25 @@ export const List = styled.div`
   color: #fff;
   margin-bottom: 3px;
   & img {
-    width: 20%;
-    height: 20%;
+    width: 10%;
+    height: 10%;
+  }
+
+  @media (max-width: ${PageBodyBreakPoint.mdMobileMax}) {
+    & img {
+      width: 20%;
+      height: 20%;
+    }
   }
 `;
 
 export const Poster = styled.div`
   display: inline;
   width: 40%;
+`;
+
+export const WatchListDiv = styled.div`
+  height: 100%;
 `;
 
 export const Details = styled.div`
@@ -46,14 +57,18 @@ export const Button = styled.button`
   padding: 0 30px;
   height: 30px;
   color: #2e2c2b;
-  text-transform: uppercase;
   border: 1px solid #e7c748;
   cursor: pointer;
   display: inline-block;
   margin: 5px;
   &:hover {
     background-color: #fbe075;
-  },
+  }
+
+  @media (max-width: ${PageBodyBreakPoint.mdMobileMax}) {
+    padding: 0 20px;
+    margin-bottom: 10px;
+  }
 `;
 
 export const ModalTitle = styled.div`
@@ -66,31 +81,5 @@ export const ModalTitle = styled.div`
 `;
 
 export const MoviesListDiv = styled.div`
-  overflow-y: auto;
-  width: 50%;
   height: 100%;
-  top: 160px;
-  border: 1px dotted #2a2f39;
-  float: left;
-  min-height: 40px;
-  @media (max-width: ${PageBodyBreakPoint.mdMobileMax}) {
-    width: 98%;
-    margin: 5px;
-    top: 19%;
-  }
-`;
-
-export const WatchListDiv = styled.div`
-  overflow-y: auto;
-  width: 50%;
-  height: 100%;
-  top: 160px;
-  border: 1px dotted #2a2f39;
-  min-height: 42px;
-
-  @media (max-width: ${PageBodyBreakPoint.mdMobileMax}) {
-    width: 98%;
-    margin: 5px;
-    top: 19%;
-  }
 `;

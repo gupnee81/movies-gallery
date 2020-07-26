@@ -24,6 +24,8 @@
       "redux-saga",
       "enzyme",
       "enzyme-adapter-react-16",
+      "reactstrap",
+      "classnames",
     ],
     "sourceMap": true,
     "baseUrl": ".",

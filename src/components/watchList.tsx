@@ -1,5 +1,5 @@
 import React from 'react';
-import { ListContainer, List, Poster, Details, Button, WatchListDiv, ModalTitle } from './styles';
+import { ListContainer, List, Poster, Details, Button, WatchListDiv } from './styles';
 import { IMovie } from 'Interface/common.interface';
 
 interface IProps {
@@ -24,7 +24,7 @@ class WatchList extends React.Component<IProps, {}> {
               this.props.removeFromWatchList(movieDetails.imdbID);
             }}
           >
-            Remove From watchlist
+            Remove
           </Button>
         </Details>
       </List>
@@ -35,7 +35,6 @@ class WatchList extends React.Component<IProps, {}> {
     return (
       <React.Fragment>
         <WatchListDiv>
-          <ModalTitle>Watchlist</ModalTitle>
           <ListContainer>
             {this.props.favList.map((movie: IMovie, idx: number) => this.renderTile(movie, idx))}
           </ListContainer>
