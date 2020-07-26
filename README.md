@@ -43,3 +43,6 @@ Open http://localhost:3000/movies-gallery with browser.
 - The unit testing to be done
 
 ## **Design**
+<div align="left">
+    <img src="/design.png" width="400px"</img> 
+</div>
