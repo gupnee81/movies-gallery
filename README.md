@@ -8,7 +8,7 @@ This application is built using Frontend framework React/Redux and uses OMDb API
 - Typescript
 - Dev and Production Webpack setup
 - HMR
-- OMDb API
+- OMDb API 
 
 ## Getting started
 
